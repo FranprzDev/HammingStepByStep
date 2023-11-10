@@ -1,0 +1,33 @@
+#modo-options{
+    display: flex;
+    gap: 15px;
+}
+
+#principal-label{
+    font-size: 5rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--terciary-color);
+    font-weight: bolder;
+}
+
+#message-input{
+    display: block;
+    font-size: 4rem;
+    border: none;
+    outline: none;
+    border-bottom: 5px solid var(--terciary-color);
+    background-color: var(--white);
+}
+
+.input-border{
+    position: relative;
+    bottom: 5px;
+    width: 0%;
+    height: 100%;
+    border-bottom: 5px solid var(--primary-color);
+    transition: width 0.5s ease-in;
+}
+
+#message-input:focus+.input-border{
+    width: 100%;
+}

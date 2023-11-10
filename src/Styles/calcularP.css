@@ -1,0 +1,32 @@
+#calcular-p{
+    text-align: center;
+}
+
+.exponential{
+    position:relative;
+    top: -1rem;
+}
+
+#exponential-main{
+    position:relative;
+    top: -60px;
+    font-size: 50px;
+}
+
+#main-ecuation{
+    font-size: 120px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--terciary-color);
+}
+
+.buttons-div{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.p{
+    font-size: 120px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--terciary-color);
+}
