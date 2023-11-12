@@ -15,7 +15,7 @@
 #root{
     height: 100vh;
     display: grid;
-    grid-template-rows: 7% auto 6%;
+    grid-template-rows: 3.2rem auto 3.5rem;
     background-color: var(--white);
     color: var(--black);
 }
