@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../../Styles/cuadro.css";
+import "../Styles/cuadro.css";
 import { generarCuadro } from "../Logic/cuadro";
 
 export default function Cuadro({type, binary, p}){

@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import MessageInput from './Components/MessageInput.jsx';
 import App from './App.jsx';
 import Emisor from './Components/Emisor.jsx';
+import Receptor from './Components/Receptor.jsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         path:"/:binary",
         element:<Emisor></Emisor>
       },
+      {
+        path:"/receptor/:binary",
+        element: <Receptor></Receptor>
+      }
     ]
   }
 ]);

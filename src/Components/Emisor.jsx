@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import CalculoP from "./Emisor/CalculoP";
 import { useState } from "react";
-import CuadroEmisor from "./Emisor/CuadroEmisor";
+import Cuadro from "./Cuadro";
 
 export default function Emisor(){
     
@@ -18,7 +18,7 @@ export default function Emisor(){
         {
             (p<0) 
             ? <CalculoP binary={binary} fijarP={fijarP}></CalculoP>
-            : <CuadroEmisor binary={binary} p={p} type={"emisor"}></CuadroEmisor>
+            : <Cuadro binary={binary} p={p} type={"emisor"}></Cuadro>
         }
         </>
     )

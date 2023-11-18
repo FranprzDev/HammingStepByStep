@@ -9,7 +9,8 @@ export default function MessageInput({tipo}){
 
     useEffect(() => {
         let expReg = new RegExp("[^01]");
-        setValido(!expReg.test(binary))
+        let validLength = (tipo == "emisor" && binary.length > 0) ? true : (binary.length >= 3) ? true : false;
+        setValido(!expReg.test(binary) && validLength)
         
     },[binary]);
 
@@ -21,7 +22,7 @@ export default function MessageInput({tipo}){
         <section>
             <form onSubmit={getBinary}>
                 <label id='principal-label'>Ingresa el binario!
-                    <input type="text" name="cadena" id="message-input" autoComplete='off' onChange={getBinary} pattern='[0-1]+' required/><div className="input-border"></div>
+                    <input type="text" name="cadena" id="message-input" autoComplete='off' onChange={getBinary} pattern='[0-1]+' minLength={(tipo == "emisor") ? 1 : 3} required/><div className="input-border"></div>
                 </label>
                 {
                     (!valido) ? (tipo == "Emisor") ? <button>Codificar Hamming</button>
