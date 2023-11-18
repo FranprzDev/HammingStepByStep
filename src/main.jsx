@@ -5,11 +5,13 @@ import MessageInput from './Components/MessageInput.jsx';
 import App from './App.jsx';
 import Emisor from './Components/Emisor.jsx';
 import Receptor from './Components/Receptor.jsx';
+import ErrorView from './Components/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<App></App>,
+    errorElement: <ErrorView></ErrorView>,
     children:[
       {
         path:"/",
@@ -17,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/:binary",
-        element:<Emisor></Emisor>
+        element:<Emisor></Emisor>,
       },
       {
         path:"/receptor/:binary",

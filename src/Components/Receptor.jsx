@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MarcarError from "./Receptor/MarcarError";
 import Cuadro from "./Cuadro";
 
@@ -10,6 +10,12 @@ export default function Receptor(){
     const [p, setP] = useState(fijarP());
     const [errorsMarked, setErrorsMarked] = useState(false);
     const [receiveBinary, setReceiveBinary] = useState(binary);
+
+    useEffect(() => {
+        let expReg = new RegExp("[^01]");
+        console.log(binary);
+        if(expReg.test(binary)) throw new Error("No binary");
+    }, [binary]);
 
     function fijarP(){
         let i = 0;
