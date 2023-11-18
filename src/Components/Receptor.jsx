@@ -23,12 +23,14 @@ export default function Receptor(){
     }
 
     return(
-        <>
-        { 
-            (!errorsMarked) 
-            ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>
-            : <Cuadro binary={receiveBinary} p={p} type={"receptor"}></Cuadro>
-        }
-        </>
+        <section>
+           <h1>Cadena original: {binary}</h1>
+           { 
+                (!errorsMarked) 
+                ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>
+                : <Cuadro binary={receiveBinary} p={p} type={"receptor"}></Cuadro>
+            } 
+        </section>
+        
     )
 }

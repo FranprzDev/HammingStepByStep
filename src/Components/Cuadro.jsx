@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../Styles/cuadro.css";
-import { generarCuadro, obtenerResultadoEmisor } from "../Logic/cuadro";
+import { generarCuadro, obtenerErrorReceptor, obtenerResultadoEmisor } from "../Logic/cuadro";
 
 export default function Cuadro({type, binary, p}){
 
@@ -80,13 +80,29 @@ export default function Cuadro({type, binary, p}){
                     <button onClick={terminarCodificacion}>Terminar codificación</button>
                 </div>
                 :
-                <div className="buttons-div">
-                    <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
+                <>
                     {
-                        (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Pasar al receptor</button></Link>
+                        (type != "emisor") 
+                        ? (obtenerErrorReceptor(cuadro) == 0) 
+                            ? <>
+                                <h3>No se han detectado errores.</h3>
+                                </>
+                            : 
+                            <>
+                                <h3>Se han detectado errores!</h3>
+                                <h3>Posición en binario: {obtenerErrorReceptor(cuadro)}</h3>
+                            </>
                         : null
                     }
-                </div>
+                    <div className="buttons-div">
+                        <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
+                        {
+                            (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Pasar al receptor</button></Link>
+                            : null
+                        }
+                    </div>
+                </>
+                
             }
             
         </section>

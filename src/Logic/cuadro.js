@@ -102,6 +102,15 @@ function obtenerResultadoEmisor(cuadro){
     return array.join("");
 }
 
+function obtenerErrorReceptor(cuadro){
+    let pRows = cuadro.slice(4);
+    let position = "";
+    pRows.forEach((row) => {
+        position = row[row.length-1].value + position;
+    });
+    return position;
+}
+
 function bitParidad(row){
     let contadorUnos = 0;
     row.forEach(element => {
@@ -134,4 +143,4 @@ function estilosCuadro(estilo){
     }
 }
 
-export {generarCuadro, obtenerResultadoEmisor}
+export {generarCuadro, obtenerResultadoEmisor, obtenerErrorReceptor}
