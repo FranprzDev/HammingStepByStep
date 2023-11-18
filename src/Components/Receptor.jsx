@@ -9,6 +9,7 @@ export default function Receptor(){
 
     const [p, setP] = useState(fijarP());
     const [errorsMarked, setErrorsMarked] = useState(false);
+    const [receiveBinary, setReceiveBinary] = useState(binary);
 
     function fijarP(){
         let i = 0;
@@ -23,10 +24,10 @@ export default function Receptor(){
 
     return(
         <>
-        {
-            (errorsMarked) 
-            ? <MarcarError binary={binary} finishMark={setErrorsMarked}></MarcarError>
-            : <Cuadro binary={binary} p={p} type={"receptor"}></Cuadro>
+        { 
+            (!errorsMarked) 
+            ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>
+            : <Cuadro binary={receiveBinary} p={p} type={"receptor"}></Cuadro>
         }
         </>
     )
