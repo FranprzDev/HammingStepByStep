@@ -7,10 +7,16 @@ export default function Cuadro({type, binary, p}){
 
     let columns = (type == "emisor") ? binary.length + p : binary.length;
     let rows = (type == "emisor") ? 5 + p : 4 + p;
-    const [cuadro, setCuadro] = useState(generarCuadro(type, binary, rows, columns));
+    const [cuadro, setCuadro] = useState(cargarCuadro());
     const [selectedRow, setSelectedRow] = useState(3);
     const [selectedColumn, setSelectedColumns] = useState(0);
     const [terminado, setTerminado] = useState(false);
+ 
+    function cargarCuadro(){
+        let c = generarCuadro(type, binary, rows, columns);
+        if(type != "emisor") columns++;
+        return c;
+    }
 
     useEffect(()=>{
         if(selectedRow >= rows){
@@ -26,9 +32,9 @@ export default function Cuadro({type, binary, p}){
         do{
             counter++;
             if(selectedColumn + counter >= columns) break;
-        }while(newCuadro[selectedRow][selectedColumn + counter].value == "");
+        }while(newCuadro[selectedRow][selectedColumn + counter] != undefined && newCuadro[selectedRow][selectedColumn + counter].value == "");
         
-        if(selectedColumn + counter >= columns){
+        if(selectedColumn + counter >= columns || !newCuadro[selectedRow][selectedColumn + counter]){
             setSelectedColumns(0);
             setSelectedRow(selectedRow + 1);
         }else{

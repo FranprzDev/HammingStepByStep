@@ -71,6 +71,7 @@ function generarCuadro(tipo, binary, rows, columns){
             }
         }
         if(tipo == "emisor") newRow[columns - Math.pow(2,i)] = bitParidad(newRow);
+        else newRow.push(bitParidad(newRow));
         cuadro.push(newRow);
     }
 

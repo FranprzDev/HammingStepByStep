@@ -13,7 +13,6 @@ export default function MessageInput(){
         let expReg = new RegExp("[^01]");
         let validLength = (binary.length > 0) ? true : false;
         setValido(!expReg.test(binary) && validLength)
-        
     },[binary]);
 
     const getBinary = (event) =>{
