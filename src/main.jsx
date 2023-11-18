@@ -13,11 +13,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:"/",
-        element:<MessageInput tipo="Emisor"></MessageInput>
-      },
-      {
-        path:"/receptor",
-        element:<MessageInput tipo="Receptor"></MessageInput>
+        element:<MessageInput></MessageInput>
       },
       {
         path:"/:binary",

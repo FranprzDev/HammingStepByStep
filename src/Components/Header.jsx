@@ -6,8 +6,7 @@ export default function Header(){
         <header>
             <h1 id="logo">Hamming</h1>
             <nav>
-                <Link to={"/"} className="nav-link">Emisor</Link>
-                <Link to={"/receptor"} className="nav-link">Receptor</Link>
+                <Link to={"/"} className="nav-link">Codificador</Link>
                 <Link to={"/about"} className="nav-link">Acerca de</Link>
             </nav>
         </header>

@@ -13,10 +13,11 @@ export default function Receptor(){
     function fijarP(){
         let i = 0;
         let auxP = 0;
-        while(binary.length >= Math.pow(2, i)){
+        while(binary.length > Math.pow(2, i)){
             auxP = i;
             i++
         }
+        auxP = auxP+2;
         return auxP;
     }
 

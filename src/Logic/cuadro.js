@@ -73,6 +73,12 @@ function generarCuadro(tipo, binary, rows, columns){
         cuadro.push(newRow);
     }
 
+    if(tipo == "emisor") cuadro.push(resultEmisorRow(cuadro, columns));
+
+    return cuadro;
+}
+
+function resultEmisorRow(cuadro, columns){
     let result = [];
 
     for(let i = 0; i < columns; i++){
@@ -85,9 +91,7 @@ function generarCuadro(tipo, binary, rows, columns){
         element.styles = estilosCuadro("result");
         result.push(element);
     }
-    cuadro.push(result);
-
-    return cuadro;
+    return result;
 }
 
 function bitParidad(row){

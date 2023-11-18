@@ -75,7 +75,7 @@ export default function Cuadro({type, binary, p}){
                 </div>
                 :
                 <div className="buttons-div">
-                    <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
+                    <Link to={(type == "emisor") ? "/" : "/receptor"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
                 </div>
             }
             
