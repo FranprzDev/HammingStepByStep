@@ -17,7 +17,7 @@ export default function Receptor(){
             auxP = i;
             i++
         }
-        auxP = auxP+2;
+        auxP++
         return auxP;
     }
 

@@ -2,6 +2,7 @@ function generarCuadro(tipo, binary, rows, columns){
         
     let cuadro = [];
     let binChars = binary.split("");
+    let pRows = (tipo == "emisor") ? rows - 5 : rows - 4; 
 
     let firstRow = [];
     let fourth = [];
@@ -37,7 +38,7 @@ function generarCuadro(tipo, binary, rows, columns){
     cuadro.push(third);
     cuadro.push(fourth);
 
-    for(let i = 0; i < rows-5; i++){
+    for(let i = 0; i < pRows; i++){
         let newRow = [];
         let intervalo = Math.pow(2,i);
         let currentIntervalo = 0;
@@ -94,6 +95,12 @@ function resultEmisorRow(cuadro, columns){
     return result;
 }
 
+function obtenerResultadoEmisor(cuadro){
+    let array = cuadro[cuadro.length-1];
+    array = array.map((element) => element.value);
+    return array.join("");
+}
+
 function bitParidad(row){
     let contadorUnos = 0;
     row.forEach(element => {
@@ -126,4 +133,4 @@ function estilosCuadro(estilo){
     }
 }
 
-export {generarCuadro}
+export {generarCuadro, obtenerResultadoEmisor}

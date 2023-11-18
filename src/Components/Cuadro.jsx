@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../Styles/cuadro.css";
-import { generarCuadro } from "../Logic/cuadro";
+import { generarCuadro, obtenerResultadoEmisor } from "../Logic/cuadro";
 
 export default function Cuadro({type, binary, p}){
 
@@ -13,7 +13,7 @@ export default function Cuadro({type, binary, p}){
     const [terminado, setTerminado] = useState(false);
 
     useEffect(()=>{
-        if(selectedRow == rows){
+        if(selectedRow >= rows){
             setTerminado(true);
         }
     }, [selectedRow])
@@ -75,7 +75,11 @@ export default function Cuadro({type, binary, p}){
                 </div>
                 :
                 <div className="buttons-div">
-                    <Link to={(type == "emisor") ? "/" : "/receptor"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
+                    <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
+                    {
+                        (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Pasar al receptor</button></Link>
+                        : null
+                    }
                 </div>
             }
             
