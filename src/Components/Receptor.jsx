@@ -1,16 +1,19 @@
 import { useParams } from "react-router-dom";
-import CalculoP from "./Emisor/CalculoP";
 import { useState } from "react";
 import CuadroEmisor from "./Emisor/CuadroEmisor";
 
-export default function Emisor(){
+export default function Receptor(){
     
     const {binary} = useParams();
 
-    const [p, setP] = useState(-1);
+    const [p, setP] = useState(fijarP());
 
-    function fijarP(valor){
-        setP(valor);
+    function fijarP(){
+        let auxP= p;
+        do{
+            auxP++;
+        }while(reachP(auxP));
+        setP(auxP);
     }
 
     return(
