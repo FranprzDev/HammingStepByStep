@@ -5,6 +5,12 @@ import Tres from "../Resources/03.png"
 import Cuatro from "../Resources/04.png"
 import Cinco from "../Resources/05.png"
 import Seis from "../Resources/06.png"
+import Siete from "../Resources/07.png"
+import Ocho from "../Resources/08.png"
+import Nueve from "../Resources/09.png"
+import Diez from "../Resources/10.png"
+import Once from "../Resources/11.png"
+import Doce from "../Resources/12.png"
 import "../Styles/about.css"
 
 export default function About(){
@@ -36,7 +42,7 @@ export default function About(){
                 <br />
                 <h3 style={{textAlign: "center"}}>2<span className="exponential">p</span> ≥ n + p + 1</h3>
                 <br />
-                La posición de estos bits de paridad en la cadena de bits, están en relación al valor 20, 21, 22, 23y así sucesivamente, o sea posiciones 
+                La posición de estos bits de paridad en la cadena de bits, están en relación al valor 2^0, 2^1, 2^2, 2^3 y así sucesivamente, o sea posiciones 
                 1, 2, 4, 8 ….
                 <br />
                 Esto lo podemos observar en el cuadro, donde en las posiciones mencionadas siempre deberemos colocar los bits de paridad "p" mientras que
@@ -98,6 +104,8 @@ export default function About(){
                 codificada.
                 <img src={Ocho} alt="Una imágen de la página donde se calcula p" />
                 Una vez finalizado el cálculo pulsaremos "Ir al cuadro" para ver una nueva vista con el cuadro correspondiente para la codificación.
+                Alli podremos ir rellenando el cuadro, la animación nos indicará si los números son bajados de la primera fila (el número viene de arriba)
+                o corresponden a un bit calculado por paridad (el número viene de la izquierda)
                 <img src={Nueve} alt="Una imágen de la página con el cuadro del emisor" />
                 Una vez completado el cuadro deberemos elegir entre dos opciones:
                 <ul>
@@ -118,6 +126,8 @@ export default function About(){
                 <img src={Doce} alt="Una imágen del cuadro del receptor completo" />
                 Finalmente pulsaremos el botón que dice "Volver al menú" para volver a la página principal e introducir una nueva cadena.
             </p>
+            <br />
+            <br />
         </section>
     )
 }
