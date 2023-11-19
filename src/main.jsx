@@ -6,6 +6,7 @@ import App from './App.jsx';
 import Emisor from './Components/Emisor.jsx';
 import Receptor from './Components/Receptor.jsx';
 import ErrorView from './Components/Error.jsx';
+import About from './Components/About.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path:"/receptor/:binary",
         element: <Receptor></Receptor>
+      },
+      {
+        path:"/about",
+        element: <About></About>
       }
     ]
   }

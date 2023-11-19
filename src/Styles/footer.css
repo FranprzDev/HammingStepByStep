@@ -3,3 +3,7 @@ footer{
     text-align: center;
     color: var(--black);
 }
+
+footer p{
+    font-size: 1rem;
+}
