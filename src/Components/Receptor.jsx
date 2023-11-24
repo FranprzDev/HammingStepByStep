@@ -30,7 +30,7 @@ export default function Receptor(){
 
     return(
         <section>
-           <h1>Cadena original: {binary}</h1>
+           <h1 className="cadena">Cadena original: {binary}</h1>
            { 
                 (!errorsMarked) 
                 ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>

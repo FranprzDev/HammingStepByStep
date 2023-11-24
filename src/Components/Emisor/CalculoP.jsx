@@ -34,7 +34,7 @@ export default function CalculoP({binary, fijarP}){
     
     return(
         <section id="calcular-p">
-            <h2>{binary}</h2>
+            <h2 className="cadena">{binary}</h2>
             <h3>2<span className="exponential">p</span> ≥ n + p + 1</h3>
             <h1 id="main-ecuation">2<span id="exponential-main" className="p">{p}</span>≥ {n} + <span className="p">{p}</span> + 1</h1>
             <h1>{leftResult} ≥ {rightResult}</h1>

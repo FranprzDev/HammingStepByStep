@@ -55,8 +55,8 @@ export default function Cuadro({type, binary, p}){
     
     return(
         <section id="cuadro-section">
-            <h1>Cadena: {binary}</h1>
-            <div id="cuadro">
+            <h1 className="cadena">Cadena: {binary}</h1>
+            <div id="cuadro" className={(type == "emisor") ? "cuadro-emisor" : "cuadro-receptor"}>
                 {
                     cuadro.map((row, i) => (
                         <div key={i} className={(selectedRow == i) ? "selected":""} style={{gridTemplateColumns:`repeat(${columns}, ${columns.toString(2).length * 25}px)`}}>

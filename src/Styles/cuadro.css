@@ -10,7 +10,7 @@
 #cuadro{
     margin-bottom: 30px;
     max-width: 1250px;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
 }
 
@@ -34,6 +34,13 @@
 
 .selected .filled{
     background-color: #9df4ffdd;
+}
+
+.cuadro-emisor div:last-child::before{
+    content: "n+p a Tx";
+    position: absolute;
+    transform: translateX(-120%);
+    font-weight: bold;
 }
 
 @keyframes down {
