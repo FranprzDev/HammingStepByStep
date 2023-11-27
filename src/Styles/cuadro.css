@@ -43,6 +43,14 @@
     font-weight: bold;
 }
 
+span{
+    font-size: 3rem;
+}
+
+.error-char{
+    color: red;
+}
+
 @keyframes down {
     0%{
         transform: translateY(calc(var(--altoCelda)*-1));

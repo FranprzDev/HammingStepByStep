@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "../Styles/cuadro.css";
 import { generarCuadro, obtenerErrorReceptor, obtenerResultadoEmisor } from "../Logic/cuadro";
 
-export default function Cuadro({type, binary, p}){
+export default function Cuadro({type, binary, p, original}){
 
     let columns = (type == "emisor") ? binary.length + p : binary.length;
     let rows = (type == "emisor") ? 5 + p : 4 + p;
@@ -55,7 +55,16 @@ export default function Cuadro({type, binary, p}){
     
     return(
         <section id="cuadro-section">
-            <h1 className="cadena">Cadena: {binary}</h1>
+            {
+                (type == "emisor")
+                ? <h1 className="cadena">Cadena: {binary}</h1>
+                : <h1>
+                    {
+                        binary.split("").map((char, i) => 
+                        <span className={(char == original[i]) ? "" : "error-char"}>{char}</span>)
+                    }
+                </h1> 
+            }
             <div id="cuadro" className={(type == "emisor") ? "cuadro-emisor" : "cuadro-receptor"}>
                 {
                     cuadro.map((row, i) => (
@@ -97,7 +106,7 @@ export default function Cuadro({type, binary, p}){
                     <div className="buttons-div">
                         <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
                         {
-                            (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Pasar al receptor</button></Link>
+                            (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Transmitir</button></Link>
                             : null
                         }
                     </div>

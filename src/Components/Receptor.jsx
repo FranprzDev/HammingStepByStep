@@ -34,7 +34,7 @@ export default function Receptor(){
            { 
                 (!errorsMarked) 
                 ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>
-                : <Cuadro binary={receiveBinary} p={p} type={"receptor"}></Cuadro>
+                : <Cuadro binary={receiveBinary} p={p} type={"receptor"} original={binary}></Cuadro>
             } 
         </section>
         
