@@ -13,14 +13,14 @@ function generarCuadro(tipo, binary, rows, columns){
     while(firstRow.length < columns){
         if(Math.log2(contador) % 1 == 0){
             contadorP++;
-            firstRow.unshift({value: `p${contadorP}`, show: true, styles: estilosCuadro("first")});
+            firstRow.unshift({value: `p${contadorP}`, show: true, styles: estilosCuadro("first", "p")});
             if(tipo == "emisor")
                 fourth.unshift({value: "", show:true});
             else
                 fourth.unshift({value: binChars.pop(), show:false});
         }else{
             contadorN++;
-            firstRow.unshift({value: `n${contadorN}`, show: true, styles: estilosCuadro("first")});
+            firstRow.unshift({value: `n${contadorN}`, show: true, styles: estilosCuadro("first", "n")});
             fourth.unshift({value: binChars.pop(), show:false});
         }
         contador++;
@@ -130,14 +130,16 @@ function toBinaty(num, l){
     return cadena;
 }
 
-function estilosCuadro(estilo){
+function estilosCuadro(estilo, tipo){
     switch(estilo){
         case "first":
-            return {backgroundColor:"var(--primary-color)", color:"var(--white)"}
+            if(tipo == "p")
+                	return {backgroundColor:"#5b21b6", color:"#dc2626"}
+            return {backgroundColor:"#5b21b6", color:"#22c55e"}
         case "second":
-            return {backgroundColor:"var(--secondary-color)", color:"var(--white)"}
+            return {backgroundColor:"#6d28d9", color:"white"}
         case "third":
-            return {backgroundColor:"var(--terciary-color)", color:"var(--white)"}
+            return {backgroundColor:"#7c3aed", color:"white"}
         case "result":
             return {border: "3px solid var(--black)"}
     }
