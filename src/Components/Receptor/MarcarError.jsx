@@ -1,5 +1,4 @@
 import { useState } from "react"
-import "../../Styles/marcarError.css"
 
 export default function MarcarError({binary, finishMark, setReceiveBinary}){
     

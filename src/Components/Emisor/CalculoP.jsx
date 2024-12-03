@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../../Styles/calcularP.css";
 
 export default function CalculoP({binary, fijarP}){
     

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../Styles/cuadro.css";
 import { generarCuadro, obtenerErrorReceptor, obtenerResultadoEmisor } from "../Logic/cuadro";
 
 export default function Cuadro({type, binary, p, original}){
@@ -54,25 +53,25 @@ export default function Cuadro({type, binary, p, original}){
     }
     
     return(
-        <section id="cuadro-section">
+        <section id="cuadro-section" className="flex flex-col items-center justify-center mt-5 mb-10">
             {
                 (type == "emisor")
                 ? <h1 className="cadena">Cadena: {binary}</h1>
                 : <h1>
                     {
                         binary.split("").map((char, i) => 
-                        <span className={(char == original[i]) ? "" : "error-char"}>{char}</span>)
+                        <span className={(char == original[i]) ? "" : "text-red-500"}>{char}</span>)
                     }
                 </h1> 
             }
-            <div id="cuadro" className={(type == "emisor") ? "cuadro-emisor" : "cuadro-receptor"}>
+            <div id="cuadro" className={`overflow-x-auto ${type == "emisor" ? "cuadro-emisor" : "cuadro-receptor"}`}>
                 {
                     cuadro.map((row, i) => (
-                        <div key={i} className={(selectedRow == i) ? "selected":""} style={{gridTemplateColumns:`repeat(${columns}, ${columns.toString(2).length * 25}px)`}}>
-                            {row.map((element,j) => (<span key={j} className={`cell ${(element.value != "")?"filled":""}`} style={element.styles}>
+                        <div key={i} className={`grid ${selectedRow == i ? "selected" : ""}`} style={{gridTemplateColumns:`repeat(${columns}, ${columns.toString(2).length * 25}px)`}}>
+                            {row.map((element,j) => (<span key={j} className={`cell ${element.value != "" ? "filled" : ""}`} style={element.styles}>
                                                         {(element.value != "") ?
-                                                            <span className={`number ${(!element.show) ? "hidden" : ""}`} style={element.animation}>
-                                                                { (element.show) ? element.value : ""}
+                                                            <span className={`number ${!element.show ? "hidden" : ""}`} style={element.animation}>
+                                                                {element.show ? element.value : ""}
                                                             </span>
                                                             : null
                                                         }
@@ -84,7 +83,7 @@ export default function Cuadro({type, binary, p, original}){
             {
                 (!terminado) 
                 ?
-                <div className="buttons-div">
+                <div className="flex gap-4 justify-center">
                     <button onClick={siguientePaso}>Siguiente paso</button>
                     <button onClick={terminarCodificacion}>Terminar codificación</button>
                 </div>
@@ -103,7 +102,7 @@ export default function Cuadro({type, binary, p, original}){
                             </>
                         : null
                     }
-                    <div className="buttons-div">
+                    <div className="flex gap-4 justify-center">
                         <Link to={"/"}><button onClick={terminarCodificacion}>Volver al menú</button></Link>
                         {
                             (type == "emisor") ? <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}><button onClick={terminarCodificacion}>Transmitir</button></Link>

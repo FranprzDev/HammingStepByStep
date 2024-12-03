@@ -1,9 +1,0 @@
-footer{
-    background-color: var(--terciary-color);
-    text-align: center;
-    color: var(--black);
-}
-
-footer p{
-    font-size: 1rem;
-}

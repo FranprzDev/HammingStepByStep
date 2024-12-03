@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import '../Styles/messageInput.css'
 import { useEffect, useState, useRef } from 'react';
 
 export default function MessageInput(){
