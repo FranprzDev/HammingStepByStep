@@ -45,19 +45,6 @@ section{
     max-width: 1200px;
     margin: auto;
 }
-
-button{
-    background-color: var(--primary-color);
-    border: none;
-    color: var(--white);
-    font-weight:bold;
-    padding: 12px;
-    font-size: 2rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.2s transform;
-}
-
 button:hover{
     transform: scale(1.025);
     box-shadow: 2px 2px 1px var(--black);

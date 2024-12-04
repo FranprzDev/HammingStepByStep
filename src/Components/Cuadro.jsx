@@ -6,6 +6,7 @@ import {
   obtenerResultadoEmisor,
 } from "../Logic/cuadro";
 import { Tooltip, TooltipProvider } from "../Components/ui/tooltip";
+import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 
 export default function Cuadro({ type, binary, p, original }) {
   let columns = type == "emisor" ? binary.length + p : binary.length;
@@ -63,8 +64,8 @@ export default function Cuadro({ type, binary, p, original }) {
   }
 
   return (
-    <div className="flex items-center justify-center bg-gray-900 min-w-5xl min-h-full">
-      <section className="flex flex-col items-center justify-center mt-5 mb-10 max-w-5xl text-white w-full">
+    <div className="flex items-center justify-center bg-gray-900 min-w-8xl min-h-full">
+      <section className="flex flex-col items-center justify-center mt-5 mb-10 max-w-8xl text-white w-full">
         {type == "emisor" ? (
           <h1 className="text-4xl text-violet-500 my-[50px]">
             Cadena: {binary}
@@ -95,12 +96,14 @@ export default function Cuadro({ type, binary, p, original }) {
                 style={{
                   gridTemplateColumns: `repeat(${columns}, minmax(80px, 1fr))`,
                   gap: "10px",
-                  borderBottom: i < 3 ? "3px solid #5b21b6" : "1px solid #6d28d9",
-                  borderTop: i === 0 ? "3px solid #5b21b6" : "1px solid #6d28d9",
+                  borderBottom:
+                    i < 3 ? "3px solid #5b21b6" : "1px solid #6d28d9",
+                  borderTop:
+                    i === 0 ? "3px solid #5b21b6" : "1px solid #6d28d9",
                   borderLeft: "1px solid #6d28d9",
                   borderRight: "1px solid #6d28d9",
                   backgroundColor: "transparent",
-                  color: "white"
+                  color: "white",
                 }}
                 onClick={() => console.log(row)}
               >
@@ -111,8 +114,6 @@ export default function Cuadro({ type, binary, p, original }) {
                     style={{
                       ...element.styles,
                       border: i < 3 ? "1px solid #6d28d9" : "none",
-                      // padding: "10px",
-                      // borderRadius: "5px",
                       height: "50px",
                       width: "80px",
                       display: "flex",
@@ -121,22 +122,82 @@ export default function Cuadro({ type, binary, p, original }) {
                     }}
                   >
                     {element.value != "" ? (
-                      <TooltipProvider>
-                        <Tooltip
-                          content={
-                            element.isParity
-                              ? "Bit de Paridad (Redundancia)"
-                              : "Bit de Dato (Importante)"
-                          }
-                        >
+                      i == 0 ? (
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <span
+                                className={`number ${
+                                  !element.show ? "hidden" : ""
+                                }`}
+                                style={element.animation}
+                              >
+                                {element.show ? element.value : ""}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>
+                                {element?.value?.startsWith("p")
+                                  ? "Bit de Paridad (Redundancia)"
+                                  : "Bit de Dato (Importante)"}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      ) : (
+                        i == 1 ? (
+                          <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <span
+                                className={`number ${
+                                  !element.show ? "hidden" : ""
+                                }`}
+                                style={element.animation}
+                              >
+                                {element.show ? element.value : ""}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Posición en Decimal</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        ) :
+                        i == 2 ? (
+                          <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <span
+                                className={`number ${
+                                  !element.show ? "hidden" : ""
+                                }`}
+                                style={element.animation}
+                              >
+                                {element.show ? element.value : ""}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Posición en Binario</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        ) :
+                        i == cuadro.length-1 ? (
                           <span
-                            className={`number ${!element.show ? "hidden" : ""}`}
-                            style={element.animation}
-                          >
-                            {element.show ? element.value : ""}
-                          </span>
-                        </Tooltip>
-                      </TooltipProvider>
+                          className={`number ${!element.show ? "hidden" : ""} text-purple-300 w-full h-full flex justify-center items-center`}
+                          style={element.animation}
+                        >
+                          {element.show ? element.value : ""}
+                        </span>
+                        ) : 
+                        <span
+                          className={`number ${!element.show ? "hidden" : ""}`}
+                          style={element.animation}
+                        >
+                          {element.show ? element.value : ""}
+                        </span>
+                      )
                     ) : null}
                   </span>
                 ))}

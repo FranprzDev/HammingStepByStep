@@ -24,7 +24,7 @@ export default function MessageInput() {
     setAscii(asciiArray);
 
     const binaryArray = asciiArray.map((num) =>
-      num.toString(2).padStart(8, "0")
+      num.toString(2).padStart(7, "0")
     );
     setBinarySteps(binaryArray);
 
