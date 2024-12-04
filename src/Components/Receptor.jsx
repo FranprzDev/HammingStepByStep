@@ -29,8 +29,7 @@ export default function Receptor(){
     }
 
     return(
-        <section>
-           <h1 className="cadena">Cadena original: {binary}</h1>
+        <section className="min-w-full bg-gray-900 min-h-full">
            { 
                 (!errorsMarked) 
                 ? <MarcarError binary={binary} finishMark={setErrorsMarked} setReceiveBinary={setReceiveBinary}></MarcarError>
