@@ -1,3 +1,4 @@
+"use client";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -7,6 +8,18 @@ import {
 } from "../Logic/cuadro";
 import { Tooltip, TooltipProvider } from "../Components/ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { motion } from "framer-motion";
 
 export default function Cuadro({ type, binary, p, original }) {
   let columns = type == "emisor" ? binary.length + p : binary.length;
@@ -52,11 +65,31 @@ export default function Cuadro({ type, binary, p, original }) {
     }
   }
 
+  const digitVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.5,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
   function terminarCodificacion() {
     let newCuadro = [...cuadro];
-    newCuadro.forEach((row) => {
-      row.forEach((element) => {
+    newCuadro.forEach((row, rowIndex) => {
+      row.forEach((element, colIndex) => {
         element.show = true;
+        element.animation = {
+          transition: {
+            delay: (rowIndex * row.length + colIndex) * 0.05,
+          },
+        };
       });
     });
     setCuadro(newCuadro);
@@ -67,9 +100,15 @@ export default function Cuadro({ type, binary, p, original }) {
     <div className="flex items-center justify-center bg-gray-900 min-w-8xl min-h-full">
       <section className="flex flex-col items-center justify-center mt-5 mb-10 max-w-8xl text-white w-full">
         {type == "emisor" ? (
-          <h1 className="text-4xl text-violet-500 my-[50px]">
-            Cadena: {binary}
-          </h1>
+          <section className="my-[50px]">
+            <h1 className="text-6xl text-violet-500 text-center fs-bold mb-3">{type.toUpperCase()}</h1>
+            <h2 className="text-4xl text-violet-500">
+              Cantidad de bits de paridad: <span className="text-white text-4xl">{p}</span>
+            </h2>
+            <h2 className="text-4xl text-violet-500">
+              Cadena: <span className="text-white text-4xl">{binary}</span>
+            </h2>
+          </section>
         ) : (
           <h1>
             {binary.split("").map((char, i) => (
@@ -144,9 +183,8 @@ export default function Cuadro({ type, binary, p, original }) {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      ) : (
-                        i == 1 ? (
-                          <TooltipProvider>
+                      ) : i == 1 ? (
+                        <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger>
                               <span
@@ -163,9 +201,8 @@ export default function Cuadro({ type, binary, p, original }) {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                        ) :
-                        i == 2 ? (
-                          <TooltipProvider>
+                      ) : i == 2 ? (
+                        <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger>
                               <span
@@ -182,21 +219,25 @@ export default function Cuadro({ type, binary, p, original }) {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                        ) :
-                        i == cuadro.length-1 ? (
-                          <span
-                          className={`number ${!element.show ? "hidden" : ""} text-purple-300 w-full h-full flex justify-center items-center`}
-                          style={element.animation}
-                        >
-                          {element.show ? element.value : ""}
-                        </span>
-                        ) : 
+                      ) : i == cuadro.length - 1 ? (
                         <span
-                          className={`number ${!element.show ? "hidden" : ""}`}
+                          className={`number ${
+                            !element.show ? "hidden" : ""
+                          } text-purple-300 w-full h-full flex justify-center items-center`}
                           style={element.animation}
                         >
                           {element.show ? element.value : ""}
                         </span>
+                      ) : (
+                        <motion.span
+                          className={`number ${!element.show ? "hidden" : ""}`}
+                          variants={digitVariants}
+                          initial="hidden"
+                          animate={element.show ? "visible" : "hidden"}
+                          style={element.animation}
+                        >
+                          {element.show ? element.value : ""}
+                        </motion.span>
                       )
                     ) : null}
                   </span>
@@ -244,14 +285,47 @@ export default function Cuadro({ type, binary, p, original }) {
                 </button>
               </Link>
               {type == "emisor" ? (
-                <Link to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}>
-                  <button
-                    className="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-6 rounded"
-                    onClick={terminarCodificacion}
-                  >
-                    Transmitir
-                  </button>
-                </Link>
+                <>
+                  <AlertDialog >
+                    <AlertDialogTrigger asChild>
+                      <button className="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-6 rounded">
+                        Transmitir
+                      </button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle className={'text-yellow-400 fs-bold text-3xl'}>¡ ALERTA !</AlertDialogTitle>
+                        <AlertDialogDescription className={'text-white'}>
+                          Una vez que hagas click en continuar, pasarás a una
+                          pantalla que te mostrará los datos que se envían desde
+                          el emisor al receptor. Los datos se enviarán de forma
+                          automática, y estos son{" "}
+                          <span className="text-violet-500">
+                            {obtenerResultadoEmisor(cuadro)}
+                          </span>
+                          .
+                          <br />
+                          ¿Estás seguro que deseas continuar a la siguiente
+                          pantalla?
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel className={'bg-violet-700 border-none text-white hover:bg-violet-500'}>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction asChild className={'bg-violet-900 border-none text-white hover:bg-violet-500'}>
+                          <Link
+                            to={`/receptor/${obtenerResultadoEmisor(cuadro)}`}
+                          >
+                            <button
+                              onClick={terminarCodificacion}
+                            >
+                              Continuar
+                            </button>
+                          </Link>
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
               ) : null}
             </div>
           </>
