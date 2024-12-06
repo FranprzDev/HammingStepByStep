@@ -41,7 +41,7 @@ export default function MarcarError({ binary, finishMark, setReceiveBinary }) {
                             setReceiveBinary(finalBinary);
                         }}
                     >
-                        Ir al cuadro
+                        Ir a la Tabla
                     </button>
                 </div>
             </div>
