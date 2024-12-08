@@ -225,7 +225,7 @@ export default function Cuadro({ type, binary, p, original }) {
                         <span
                           className={`number ${
                             !element.show ? "hidden" : ""
-                          } text-purple-300 w-full h-full flex justify-center items-center`}
+                          } text-white w-full h-full flex justify-center items-center`}
                           style={element.animation}
                         >
                           {element.show ? element.value : ""}
