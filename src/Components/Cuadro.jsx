@@ -1,4 +1,3 @@
-"use client";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -110,11 +109,13 @@ export default function Cuadro({ type, binary, p, original }) {
             </h2>
           </section>
         ) : (
-          <h1>
+          <h1 className="text-3xl fs-bold text-center mb-3">
+            Cadena de bits Original: 
+            <br/>
             {binary.split("").map((char, i) => (
               <span
                 key={i}
-                className={char == original[i] ? "" : "text-red-500"}
+                className={`${char == original[i] ? "" : "text-red-500"} text-3xl fs-bold`}
               >
                 {char}
               </span>
@@ -223,7 +224,7 @@ export default function Cuadro({ type, binary, p, original }) {
                         <span
                           className={`number ${
                             !element.show ? "hidden" : ""
-                          } text-purple-300 w-full h-full flex justify-center items-center`}
+                          } text-white w-full h-full flex justify-center items-center`}
                           style={element.animation}
                         >
                           {element.show ? element.value : ""}
@@ -270,8 +271,9 @@ export default function Cuadro({ type, binary, p, original }) {
                 </>
               ) : (
                 <>
-                  <h3>Se han detectado errores!</h3>
+                  <h3 className="text-red-500">Se han detectado errores!</h3>
                   <h3>Posición en binario: {obtenerErrorReceptor(cuadro)}</h3>
+                  <h3>Posición en decimal: {parseInt(obtenerErrorReceptor(cuadro), 2)}</h3>
                 </>
               )
             ) : null}

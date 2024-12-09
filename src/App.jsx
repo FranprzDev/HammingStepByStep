@@ -8,10 +8,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow relative">
-        {/* <div className="absolute inset-0 z-0">
-          <img src={Background} alt="Background Pattern" className="w-full h-full object-cover" />
-        </div> */}
+      <main className="bg-gray-900 flex-grow relative">
         <Outlet />
       </main>
       <Footer />
