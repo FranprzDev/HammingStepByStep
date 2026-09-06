@@ -1,8 +1,16 @@
-# React + Vite
+# Hamming Step by Step
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simulador paso a paso del código Hamming para codificar series binarias, hecho para la materia **Comunicaciones** (UTN-FRT). React + Vite + Tailwind.
 
-Currently, two official plugins are available:
+## Qué hace
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Ingresás un mensaje binario y ves la codificación Hamming etapa por etapa (emisor → cuadro → receptor)
+- Simula errores de transmisión y muestra cómo se detectan y corrigen
+- Secciones About, MessageInput, Emisor, Receptor y visualización del cuadro en `src/Components`
+
+## Ejecutar
+
+```bash
+npm install
+npm run dev
+```
